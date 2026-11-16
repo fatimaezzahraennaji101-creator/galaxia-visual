@@ -1,0 +1,268 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Cumpleaños</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle, #54276e, #160b2b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.scene {
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+  color: #fff;
+  font-size: clamp(25px, 6vw, 48px);
+  margin-bottom: 100px;
+  text-shadow: 0 0 15px #ff72c6,
+               0 0 35px #ff72c6;
+  animation: titleGlow 2s infinite alternate;
+}
+
+.cake {
+  position: relative;
+  width: 280px;
+  height: 210px;
+  margin: auto;
+}
+
+/* VELAS */
+
+.candles {
+  position: absolute;
+  top: -85px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 28px;
+  z-index: 5;
+}
+
+.candle {
+  width: 14px;
+  height: 75px;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 7px,
+    #ff6fae 7px,
+    #ff6fae 14px
+  );
+  border-radius: 4px;
+  position: relative;
+}
+
+/* LLAMAS */
+
+.flame {
+  position: absolute;
+  top: -27px;
+  left: 2px;
+  width: 11px;
+  height: 23px;
+  background: linear-gradient(
+    orange,
+    #fff27a,
+    white
+  );
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 0 15px orange,
+              0 0 30px #ff9d00;
+  animation: flicker .3s infinite alternate;
+  transform-origin: bottom;
+}
+
+/* TARTA */
+
+.layer {
+  position: absolute;
+  width: 280px;
+  height: 65px;
+  border-radius: 12px 12px 20px 20px;
+  background: #ff8fbd;
+  box-shadow: inset 0 -10px #ec5799,
+              0 8px 15px #0004;
+}
+
+.layer.top {
+  top: 0;
+  background: #ffc0dd;
+}
+
+.layer.middle {
+  top: 48px;
+  width: 250px;
+  left: 15px;
+  background: #ff91bf;
+}
+
+.layer.bottom {
+  top: 96px;
+  width: 280px;
+  background: #ffb3d2;
+}
+
+/* CREMA */
+
+.cream {
+  position: absolute;
+  top: -8px;
+  width: 280px;
+  height: 25px;
+  background: #fff0f6;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.plate {
+  position: absolute;
+  bottom: 5px;
+  left: -25px;
+  width: 330px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px #0005;
+}
+
+/* DECORACIÓN */
+
+.cherry {
+  position: absolute;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background: #e52355;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.cherry.one { left: 65px; }
+.cherry.two { left: 130px; }
+.cherry.three { left: 195px; }
+
+/* ANIMACIONES */
+
+@keyframes flicker {
+  from {
+    transform: scale(1) rotate(-5deg);
+  }
+  to {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 0 0 10px #ff72c6;
+  }
+  to {
+    text-shadow: 0 0 30px #ff72c6,
+                 0 0 50px white;
+  }
+}
+
+/* CONFETI */
+
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 14px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+  <h1>🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h1>
+
+  <div class="cake">
+
+    <div class="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+
+    <div class="layer top">
+      <div class="cream"></div>
+      <div class="cherry one"></div>
+      <div class="cherry two"></div>
+      <div class="cherry three"></div>
+    </div>
+
+    <div class="layer middle"></div>
+    <div class="layer bottom"></div>
+    <div class="plate"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+// Crear confeti de colores
+const colors = [
+  "#ff69b4",
+  "#ffe066",
+  "#00eaff",
+  "#b66bff",
+  "#ffffff"
+];
+
+for (let i = 0; i < 70; i++) {
+
+  const piece = document.createElement("div");
+
+  piece.className = "confetti";
+
+  piece.style.left = Math.random() * 100 + "vw";
+
+  piece.style.background =
+    colors[Math.floor(Math.random() * colors.length)];
+
+  piece.style.animationDuration =
+    (Math.random() * 4 + 3) + "s";
+
+  piece.style.animationDelay =
+    Math.random() * 5 + "s";
+
+  document.body.appendChild(piece);
+}
+
+</script>
+
+</body>
+</html>
+```
